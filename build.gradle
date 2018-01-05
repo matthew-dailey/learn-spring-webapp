@@ -1,4 +1,24 @@
-apply from: BOOT_SAMPLE_GRADLE
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:${pluginVersion}"
+  }
+}
+
+//plugins {
+//  id "org.sonarqube" version "2.1-rc1"
+//}
+
+apply from: 'gradle/boot-sample.gradle'
+
+
+repositories {
+  mavenCentral()
+}
 
 springBoot {
     mainClass = 'org.springframework.security.samples.HelloWorldApplication'
@@ -7,10 +27,8 @@ springBoot {
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web",
             "org.springframework.boot:spring-boot-starter-thymeleaf",
-            "org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE",
-            project(":spring-security-config"),
-            project(":spring-security-web")
+            "org.springframework.security:spring-security-config",
+            "org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE"
 
-    testCompile "org.springframework.boot:spring-boot-starter-test",
-            project(":spring-security-test")
+    testCompile "org.springframework.boot:spring-boot-starter-test"
 }
