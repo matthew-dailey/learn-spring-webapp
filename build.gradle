@@ -9,10 +9,6 @@ buildscript {
   }
 }
 
-//plugins {
-//  id "org.sonarqube" version "2.1-rc1"
-//}
-
 apply from: 'gradle/boot-sample.gradle'
 
 
